@@ -1,0 +1,17 @@
+---
+- hosts: web 
+  remote_user: ansible
+  become: yes
+  gather_facts: no
+#  serial: 1
+  tasks:
+    - name: command module
+      command: cat /home/ansible/test
+
+    - name: shell module
+      shell: echo $SHELL
+
+    - name: script module
+      script: /etc/ansible/script.sh
+      register: script
+    - debug: var=script

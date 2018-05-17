@@ -1,0 +1,7 @@
+[web]
+ubuntu
+ubuntu-14
+
+[centos]
+ansible
+

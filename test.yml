@@ -1,0 +1,18 @@
+---
+- hosts: ubuntu
+  remote_user: ansible
+  become: yes
+
+  tasks:
+    - name: This is installing {{with_items}} using loop
+      user: name={{item}}
+      with_items:
+       - prashanth
+       - krishna
+       - deepu
+
+    - name: second user
+      user: name=priya
+    - name: 3rd user
+      user: name=jaggu
+

@@ -1,0 +1,17 @@
+---
+- hosts: ubuntu
+  remote_user: ansible
+  become: yes
+  
+  vars:
+      #KEY: VALUE   Ex: A=10
+       pkg: git
+  vars_files: 
+      - varsfile.yml
+  tasks:
+    - name: install {{pkg}}
+      apt: name={{pkg}} state=installed 
+     #apt: name=git state=installed
+
+    - name: Install {{weblb}}
+      apt: name={{weblb}} state=installed

@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Find out playbooks path
+      shell: pwd
+      register: playbook_path_output
+    - debug: var=playbook_path_output.stdout
+    - name: Send a success email
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        username: syam.devops 
+        password: farntyamviqkfvlj
+        secure: starttls
+        charset: utf-8
+        subject: Email Notification by Ansible Automation Playbook
+        from: syam.devops@gmail.com
+        to:  jmplraghu@gmail.com,krishna.gugulothu99@gmail.com,narasimharao.lingisetti@gmail.com
+        body: 'The installaion is complete.'
+        body: Hostname is {{ ansible_hostname }} has been successfully provisioned. Test Email by Anisble Module
+        attach: command.yml
+        timeout: 20
+        
+      delegate_to: localhost

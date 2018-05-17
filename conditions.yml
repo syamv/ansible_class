@@ -1,0 +1,20 @@
+---
+- hosts: ubuntu
+  remote_user: ansible
+  become: yes
+  tasks:
+    - name: Installing {{item}} on ubuntu
+      apt: pkg={{item}} state=installed
+      with_items:
+        - git
+        - curl
+      when: ansible_os_family == "Debian"
+
+    - name: Installing on redhat
+      yum: pkg={{item}} state=installed
+      with_items:
+        - git
+        - curl
+      when: ansible_os_family == "Redhat"
+
+

@@ -1,0 +1,12 @@
+---
+- hosts: ubuntu
+  remote_user: ansible
+  become: yes
+  tasks:
+    - name: Installing {{item}}
+      debug:
+        msg: An item {{item}} ready to install message by debug module
+      apt: pkg={{item}} state=present
+      with_items: 
+        - git
+        - curl

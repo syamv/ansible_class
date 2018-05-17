@@ -1,0 +1,18 @@
+#web server setup
+- hosts: ubuntu
+  remote_user: ansible
+  become: yes
+  tasks:
+    - name: installing apache2 service
+      apt: name=apache2 state=installed
+      tags: 
+        - install
+    - name: copy index.html
+      copy: src=index.html dest=/var/www/html/index.html
+      tags:
+        - copy
+    - name: start apache2  service
+      service: name=apache2  state=started
+      tags:
+        - service
+

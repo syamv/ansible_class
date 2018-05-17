@@ -1,0 +1,5 @@
+---
+- name: "Installing VIM"
+  apt: pkg=vim state=installed
+
+

@@ -1,0 +1,29 @@
+#webserver setup
+---
+- hosts : ubuntu
+  remote_user: ansible
+  become : yes
+  gather_facts: no
+  tasks:
+    - name: Downloading tomcat server
+      get_url: url=http://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.88/bin/apache-tomcat-7.0.88.tar.gz dest=/etc/ansible
+
+    - name: create tomcat folder
+    # command: mkdir /usr/local/tomcat
+      file: path=/usr/local/tomcat state=directory
+
+    - name: Eatract Archive
+      unarchive: src=/etc/ansible/apache-tomcat-7.0.88.tar.gz dest=/usr/local/tomcat copy=no
+
+    - name: create tomcat users
+      copy: src=/home/ansible/etc/ansible/tomcat-users.xml dest=/usr/local/tomcat/apache-tomcat-7.0.88/conf/
+
+    - name: deploy application
+      copy: src=/home/ansible/etc/ansible/sample.war dest=/usr/local/tomcat/apache-tomcat-7.0.88/webapps/
+
+    - name: start tomcat
+      command: nohup /usr/local/tomcat/apache-tomcat-7.0.88/bin/catalina.sh start &
+      
+    
+      
+  

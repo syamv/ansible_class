@@ -1,0 +1,15 @@
+---
+- hosts: ubuntu
+  remote_user: ansible
+  become: yes
+  tasks:
+    - name: installing apache2 service
+      apt: name=apache2 state=installed
+    - name: copy index.html
+      copy: src=index.html dest=/var/www/html/index.html
+      register: copied
+    - debug: var=copied
+    - name: start apache2  service
+      service: name=apache2  state=started
+      register: result
+    - debug: var=result

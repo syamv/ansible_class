@@ -1,0 +1,10 @@
+---
+- hosts: ubuntu
+  vars:
+    variable_to_be_replaced: 'Shyam'
+    inline_variable: 'Nithin'
+  tasks:
+    - name: Ansible Template Example
+      template:
+        src: hello_world.j2
+        dest: /home/ansible/hello_world.txt

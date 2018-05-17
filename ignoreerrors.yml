@@ -1,0 +1,12 @@
+---
+- hosts: web
+  remote_user: ansible
+  become: yes
+  tasks:
+    - name: installing apache2 service
+      apt: name=apache32 state=installed
+      ignore_errors: yes
+    - name: copy index.html
+      copy: src=index.html dest=/var/www/html/index.html
+    - name: start apache2  service
+      service: name=apache2  state=started

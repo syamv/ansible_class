@@ -1,0 +1,16 @@
+---
+- hosts: ubuntu
+  remote_user: ansible
+  become: yes
+  
+  vars:
+       my_version: "{{ version }}"
+       pkg: wget
+  vars_files:
+      - varsfile.yml
+  tasks:
+    - name: installing {{pkg}} version value={{my_version}}
+      apt: pkg={{pkg}} state=installed
+
+    - name: This is to understand vars.yml file package = {{weblb}}
+      apt: pkg={{weblb}} state=installed
