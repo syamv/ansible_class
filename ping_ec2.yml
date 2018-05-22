@@ -1,0 +1,9 @@
+---
+- hosts:
+     - tag_Name_ansible
+  remote_user: ec2-user
+  become: true
+  tasks:
+    - ping:
+    - name: Install git on Ec2-Ubuntu
+      yum: name=git update_cache=yes state=latest

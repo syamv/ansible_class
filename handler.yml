@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - debug: msg="call handler"
+      changed_when: True
+      notify: do something
+      
+  handlers:
+    - name: do something
+      debug: msg="I'm doing something"
+      when: foo|default(False)|bool
+      
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - set_fact: 
+        foo: True
+      
+    - debug: msg="call handler"
+      changed_when: True
+      notify: do something
+      
+  handlers:
+    - name: do something
+      debug: msg="I'm doing something"
+      when: foo|default(False)|bool

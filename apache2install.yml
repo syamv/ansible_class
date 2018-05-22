@@ -1,0 +1,4 @@
+---
+- name: installing apache2 service
+  apt: name=apache2 state=absent
+

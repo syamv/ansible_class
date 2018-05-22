@@ -1,0 +1,9 @@
+---
+- hosts: ubuntu
+  remote_user: ansible
+  become: yes
+  vars: 
+   password: $1$test$pi/xDtU5WFVRqYS6BMU8X/
+  tasks:
+    - name: creating users and encripted
+      user: name=test password={{password}}

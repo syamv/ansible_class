@@ -1,0 +1,13 @@
+---
+#This playbook uses the win_ping module to test connectivity to Windows hosts
+- hosts: all
+  remote_user: ansible
+  become: yes 
+  become_method: sudo
+  gather_facts: yes
+  tasks:
+  - name: ping all hosts
+    ping:
+#  roles:
+#    - basics
+ 
